@@ -1,15 +1,17 @@
 services:
   prometheus:
     image: prom/prometheus:latest
-    network_mode: "host"
+    #network_mode: "host"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090" # UI do Prometheus
+      - "9090:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "3000:3000" # UI do Grafana
+      - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
 volumes:
