@@ -1,3 +1,7 @@
 from django.shortcuts import render
+import time
+from django.http import HttpResponse
 
-# Create your views here.
+def slow_view(request):
+    time.sleep(4)
+    return HttpResponse("teste de view lenta")
